@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    title: 'Music Theory Project',
+    description: 'An interactive tool for learning and exploring music theory concepts.',
+    tags: ['web', 'music', 'education'],
+    link: 'https://nikikonforti.com/templates/work/uidesign/ui_project/templates/home.html',
+    emoji: '🎵',
+  },
+  {
+    title: 'Set Game',
+    description: 'A digital implementation of the card game Set, with a clean UI and game logic.',
+    tags: ['game', 'javascript'],
+    link: '/set',
+    emoji: '🃏',
+  },
+  // Add more projects here!
+];
+---
+
+<Layout title="work — niki konforti" description="Projects and work by Niki Konforti">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between">
+    <a href="/" class="nav-link" aria-label="home">
+      <svg viewBox="0 0 36 18" width="42" height="22" aria-hidden="true">
+        <path d="M2 16 L2 2 L16 16 L16 2 M16 9 L28 2 M16 9 L28 16"
+              stroke="#2c2417" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </a>
+    <div class="flex gap-6 text-sm font-body font-medium">
+      <a href="/work"   class="nav-link text-terra font-semibold transition-colors">work</a>
+      <a href="/art"    class="nav-link text-bark/70 hover:text-terra transition-colors">art</a>
+      <a href="/resume" class="nav-link text-bark/70 hover:text-terra transition-colors">resume</a>
+      <a href="https://github.com/nikikonforti" target="_blank" rel="noopener" class="nav-link text-bark/70 hover:text-terra transition-colors">github</a>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-6 pt-32 pb-20">
+
+    <div class="stagger-1 mb-12">
+      <p class="text-terra text-sm font-body font-medium uppercase tracking-widest mb-2">portfolio</p>
+      <h1 class="font-display text-5xl lg:text-6xl font-semibold text-bark leading-tight">
+        things i've built.
+      </h1>
+      <p class="mt-4 text-bark/60 font-body text-lg max-w-xl">
+        a mix of class projects, side projects, and experiments. more always in progress.
+      </p>
+    </div>
+
+    <!-- Project grid -->
+    <div class="stagger-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {projects.map((p) => (
+        <div class="hover-card bg-cream-dark/60 border border-bark/8 rounded-2xl p-6 flex flex-col gap-3">
+          <div class="text-3xl">{p.emoji}</div>
+          <h2 class="font-display text-xl font-semibold text-bark">{p.title}</h2>
+          <p class="font-body text-bark/65 text-sm leading-relaxed flex-1">{p.description}</p>
+          <div class="flex flex-wrap gap-2 mt-1">
+            {p.tags.map(t => (
+              <span class="px-2.5 py-0.5 bg-cream border border-bark/10 text-bark/50 text-xs font-body rounded-full">{t}</span>
+            ))}
+          </div>
+          {p.link && (
+            <a href={p.link} target="_blank" rel="noopener"
+               class="mt-1 text-sm font-body text-terra hover:underline self-start">
+              view project →
+            </a>
+          )}
+        </div>
+      ))}
+
+      <!-- Placeholder card -->
+      <div class="border-2 border-dashed border-bark/15 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 text-center min-h-[180px]">
+        <span class="text-2xl">🚧</span>
+        <p class="text-bark/40 font-body text-sm">more coming soon</p>
+      </div>
+    </div>
+
+    <!-- GitHub CTA -->
+    <div class="stagger-3 mt-16 p-8 bg-cream-dark/50 rounded-2xl border border-bark/8 text-center">
+      <p class="font-body text-bark/60 mb-4">want to see what i'm tinkering with?</p>
+      <a href="https://github.com/nikikonforti" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-2 px-6 py-2.5 bg-bark text-cream rounded-full text-sm font-medium font-body hover:bg-bark/80 transition-colors">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        github.com/nikikonforti
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="text-center pb-8 text-bark/30 text-xs font-body">
+    made with ♥ in nyc
+  </footer>
+
+</Layout>

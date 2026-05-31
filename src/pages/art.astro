@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pieces = [
+  { title: 'Black and white DaVinci study', medium: 'oil paint', src: 'https://nikikonforti.com/content/blackandwhite.jpg' },
+  { title: 'Doodle', medium: 'black ink pen', src: 'https://nikikonforti.com/content/doodle.jpg' },
+  { title: 'Freedom tower in the rain', medium: 'oil paint', src: 'https://nikikonforti.com/content/forToto.jpg' },
+  { title: 'Nazli portrait', medium: 'oil paint', src: 'https://nikikonforti.com/content/nazli.jpg' },
+  { title: 'Boat in Maine', medium: 'watercolors', src: 'https://nikikonforti.com/content/Photo2.jpg' },
+  { title: 'Abstract diptych', medium: 'oil paint', src: 'https://nikikonforti.com/content/sophieBlue.jpg' },
+  { title: 'Cityscape', medium: 'oil paint', src: 'https://nikikonforti.com/content/cityscape.jpg' },
+  { title: 'Demoiselles study 1', medium: 'oil paint', src: 'https://nikikonforti.com/content/dem_study1.jpg' },
+  { title: 'Demoiselles study 2', medium: 'oil paint', src: 'https://nikikonforti.com/content/dem_study2.jpg' },
+  { title: 'Demoiselles final', medium: 'oil paint', src: 'https://nikikonforti.com/content/dem_final.jpg' },
+  { title: 'Georgia portrait', medium: 'oil paint', src: 'https://nikikonforti.com/content/georgia.jpg' },
+  { title: 'Model 1', medium: 'oil paint', src: 'https://nikikonforti.com/content/model1.jpg' },
+  { title: 'Model 2', medium: 'oil paint', src: 'https://nikikonforti.com/content/model2.jpg' },
+  { title: 'Model 3', medium: 'oil paint', src: 'https://nikikonforti.com/content/model3.jpg' },
+  { title: 'Self portrait', medium: 'oil paint', src: 'https://nikikonforti.com/content/self_portrait.jpg' },
+  { title: 'Tiny portrait', medium: 'oil paint', src: 'https://nikikonforti.com/content/tiny_detail.jpg' },
+  { title: 'Wendy window sunset', medium: 'oil paint', src: 'https://nikikonforti.com/content/window_sunset.jpg' },
+  { title: 'Window view', medium: 'oil paint', src: 'https://nikikonforti.com/content/window_view.jpg' },
+];
+---
+
+<Layout title="art — niki konforti" description="Art and paintings by Niki Konforti">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between">
+    <a href="/" class="nav-link" aria-label="home">
+      <svg viewBox="0 0 36 18" width="42" height="22" aria-hidden="true">
+        <path d="M2 16 L2 2 L16 16 L16 2 M16 9 L28 2 M16 9 L28 16"
+              stroke="#2c2417" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </a>
+    <div class="flex gap-6 text-sm font-body font-medium">
+      <a href="/work"   class="nav-link text-bark/70 hover:text-terra transition-colors">work</a>
+      <a href="/art"    class="nav-link text-terra font-semibold transition-colors">art</a>
+      <a href="/resume" class="nav-link text-bark/70 hover:text-terra transition-colors">resume</a>
+      <a href="https://github.com/nikikonforti" target="_blank" rel="noopener" class="nav-link text-bark/70 hover:text-terra transition-colors">github</a>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-6 pt-32 pb-20">
+
+    <div class="stagger-1 mb-12">
+      <p class="text-sage text-sm font-body font-medium uppercase tracking-widest mb-2">gallery</p>
+      <h1 class="font-display text-5xl lg:text-6xl font-semibold text-bark leading-tight">
+        things i've made.
+      </h1>
+      <p class="mt-4 text-bark/60 font-body text-lg max-w-xl">
+        i paint, draw, and occasionally make things with my hands. here's a small collection.
+      </p>
+    </div>
+
+    {pieces.length > 0 ? (
+      <!-- Gallery grid -->
+      <div class="stagger-2 columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+        {pieces.map((p) => (
+          <div class="break-inside-avoid rounded-xl overflow-hidden border border-bark/8 group relative">
+            <div class="relative overflow-hidden">
+              <img src={p.src} alt={p.title}
+                   class="w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-bark/0 group-hover:bg-bark/50 transition-colors duration-300 pointer-events-none" />
+              <!-- Description bottom-right -->
+              <div class="absolute bottom-3 right-3 text-right opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <p class="font-display text-sm font-semibold text-cream leading-snug drop-shadow">{p.title}</p>
+                <p class="font-body text-xs text-cream/75 drop-shadow">{p.medium}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <!-- Placeholder when gallery is empty -->
+      <div class="stagger-2 flex flex-col items-center justify-center py-24 text-center gap-4">
+        <div class="text-5xl animate-float">🎨</div>
+        <p class="font-display text-2xl text-bark/50 italic">gallery coming soon</p>
+        <p class="font-body text-bark/40 text-sm max-w-xs">
+          add your images to <code class="bg-cream-dark px-1.5 py-0.5 rounded text-xs">/public/art/</code> and update the list in <code class="bg-cream-dark px-1.5 py-0.5 rounded text-xs">art.astro</code>
+        </p>
+      </div>
+    )}
+
+    <!-- Media / tools note -->
+    <div class="stagger-3 mt-16 flex flex-wrap gap-3 justify-center">
+      {['oil on canvas','watercolor','gouache','charcoal','digital'].map(m => (
+        <span class="px-4 py-2 bg-cream-dark border border-bark/10 text-bark/50 text-sm font-body rounded-full">
+          {m}
+        </span>
+      ))}
+    </div>
+
+    <!-- Piano note -->
+    <p class="stagger-4 text-center mt-8 text-bark/40 font-body text-sm">
+      i also play piano 🎹 — maybe one day there'll be recordings here too.
+    </p>
+
+  </main>
+
+  <footer class="text-center pb-8 text-bark/30 text-xs font-body">
+    made with ♥ in nyc
+  </footer>
+
+</Layout>

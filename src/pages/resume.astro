@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const experience = [
+  {
+    role: 'Software Engineering Resident',
+    org: 'Google',
+    location: 'New York, NY',
+    dates: '2024 – Present',
+    bullets: [
+      'One-year residency program for recent graduates.',
+      // Add more details here
+    ],
+    emoji: '🔵',
+  },
+];
+
+const education = [
+  {
+    school: 'Columbia University',
+    degree: 'B.S. Computer Science',
+    dates: '2020 – 2024',
+    emoji: '🦁',
+  },
+];
+
+const skills = [
+  { category: 'Languages', items: ['Python', 'Java', 'JavaScript', 'TypeScript', 'C'] },
+  { category: 'Web', items: ['React', 'Astro', 'HTML/CSS', 'Node.js'] },
+  { category: 'Tools', items: ['Git', 'Unix/Linux', 'Figma'] },
+  { category: 'Also good at', items: ['painting 🎨', 'piano 🎹', 'baking 🍞'] },
+];
+---
+
+<Layout title="resume — niki konforti" description="Resume of Niki Konforti, software engineer">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between">
+    <a href="/" class="nav-link" aria-label="home">
+      <svg viewBox="0 0 36 18" width="42" height="22" aria-hidden="true">
+        <path d="M2 16 L2 2 L16 16 L16 2 M16 9 L28 2 M16 9 L28 16"
+              stroke="#2c2417" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </a>
+    <div class="flex gap-6 text-sm font-body font-medium">
+      <a href="/work"   class="nav-link text-bark/70 hover:text-terra transition-colors">work</a>
+      <a href="/art"    class="nav-link text-bark/70 hover:text-terra transition-colors">art</a>
+      <a href="/resume" class="nav-link text-terra font-semibold transition-colors">resume</a>
+      <a href="https://github.com/nikikonforti" target="_blank" rel="noopener" class="nav-link text-bark/70 hover:text-terra transition-colors">github</a>
+    </div>
+  </nav>
+
+  <main class="max-w-3xl mx-auto px-6 pt-32 pb-20">
+
+    <div class="stagger-1 mb-10 flex flex-col sm:flex-row sm:items-end gap-4 justify-between">
+      <div>
+        <p class="text-rose text-sm font-body font-medium uppercase tracking-widest mb-2">résumé</p>
+        <h1 class="font-display text-5xl font-semibold text-bark">niki konforti</h1>
+        <p class="text-bark/55 font-body mt-1">software engineer · new york, ny</p>
+      </div>
+      <div class="flex gap-3">
+        <a href="mailto:nfk2107@columbia.edu"
+           class="px-4 py-2 text-sm font-body border border-bark/20 rounded-full hover:border-terra hover:text-terra transition-colors">
+          email
+        </a>
+        <a href="https://github.com/nikikonforti" target="_blank"
+           class="px-4 py-2 text-sm font-body border border-bark/20 rounded-full hover:border-terra hover:text-terra transition-colors">
+          github
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-bark/10 mb-10"></div>
+
+    <!-- Experience -->
+    <section class="stagger-2 mb-10">
+      <h2 class="font-display text-2xl font-semibold text-bark mb-6">experience</h2>
+      <div class="flex flex-col gap-6">
+        {experience.map((e) => (
+          <div class="flex gap-4">
+            <div class="text-2xl mt-0.5 flex-shrink-0">{e.emoji}</div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <p class="font-body font-medium text-bark">{e.role} <span class="text-terra">@ {e.org}</span></p>
+                <p class="text-bark/45 text-sm font-body">{e.dates}</p>
+              </div>
+              <p class="text-bark/45 text-sm font-body mb-2">{e.location}</p>
+              <ul class="list-none flex flex-col gap-1">
+                {e.bullets.filter(b => b).map(b => (
+                  <li class="text-bark/65 text-sm font-body flex gap-2">
+                    <span class="text-terra/60 flex-shrink-0">–</span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="h-px bg-bark/10 mb-10"></div>
+
+    <!-- Education -->
+    <section class="stagger-3 mb-10">
+      <h2 class="font-display text-2xl font-semibold text-bark mb-6">education</h2>
+      <div class="flex flex-col gap-4">
+        {education.map((e) => (
+          <div class="flex gap-4">
+            <div class="text-2xl mt-0.5 flex-shrink-0">{e.emoji}</div>
+            <div>
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <p class="font-body font-medium text-bark">{e.school}</p>
+                <p class="text-bark/45 text-sm font-body">{e.dates}</p>
+              </div>
+              <p class="text-bark/55 text-sm font-body">{e.degree}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="h-px bg-bark/10 mb-10"></div>
+
+    <!-- Skills -->
+    <section class="stagger-4 mb-10">
+      <h2 class="font-display text-2xl font-semibold text-bark mb-6">skills</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {skills.map((s) => (
+          <div>
+            <p class="text-xs font-body font-medium uppercase tracking-widest text-bark/40 mb-2">{s.category}</p>
+            <div class="flex flex-wrap gap-2">
+              {s.items.map(item => (
+                <span class="px-3 py-1 bg-cream-dark text-bark/70 text-sm font-body rounded-full border border-bark/10">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Download note -->
+    <div class="stagger-5 mt-12 p-6 bg-cream-dark/50 rounded-2xl border border-bark/8 text-center">
+      <p class="text-bark/50 font-body text-sm">
+        want a PDF version? <a href="mailto:nfk2107@columbia.edu" class="text-terra hover:underline">reach out</a> and i'll send one over.
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="text-center pb-8 text-bark/30 text-xs font-body">
+    made with ♥ in nyc
+  </footer>
+
+</Layout>

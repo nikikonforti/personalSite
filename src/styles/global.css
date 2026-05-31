@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #faf7f2;
+  color: #2c2417;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+/* ── Hide unused cursor/sparkle elements ── */
+#cursor, #sparkle-canvas { display: none; }
+
+/* ── Link underline animation ── */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1.5px;
+  background: #c9714a;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── Page fade-in stagger ── */
+.stagger-1 { animation: fadeUp 0.7s 0.1s ease both; }
+.stagger-2 { animation: fadeUp 0.7s 0.25s ease both; }
+.stagger-3 { animation: fadeUp 0.7s 0.4s ease both; }
+.stagger-4 { animation: fadeUp 0.7s 0.55s ease both; }
+.stagger-5 { animation: fadeUp 0.7s 0.7s ease both; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Easter egg: Konami celebration ── */
+#konami-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(201, 113, 74, 0.92);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: #faf7f2;
+}
+
+#konami-overlay.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+#konami-overlay h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+#konami-overlay p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  margin-bottom: 2rem;
+}
+
+#konami-close {
+  padding: 0.6rem 1.8rem;
+  border: 2px solid #faf7f2;
+  border-radius: 999px;
+  color: #faf7f2;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+#konami-close:hover {
+  background: #faf7f2;
+  color: #c9714a;
+}
+
+/* ── Confetti canvas ── */
+#confetti-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* ── Section card hover ── */
+.hover-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(44, 36, 23, 0.08);
+}
+
+/* ── Mobile cursor fallback ── */
+@media (pointer: coarse) {
+  body { cursor: auto; }
+  #cursor, #sparkle-canvas { display: none; }
+}
